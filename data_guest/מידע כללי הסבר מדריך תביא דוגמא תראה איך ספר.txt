@@ -236,7 +236,7 @@ _cls_config.interceptAjax=true;
       <!-- מסמך הטמעה גנרי קובץ -->
       <strong>
         <h1> הורדת מסמך הנחיות גנרי </h1>
-        <a href="../data/Template.docx" download>הורד את הקובץ</a>
+        <a href="data/Template.docx" download>הורד את הקובץ</a>
          </strong>
       </section>
 

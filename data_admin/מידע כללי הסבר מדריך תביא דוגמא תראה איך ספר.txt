@@ -1,18 +1,4 @@
 <section>
- <!--משה רבנו שהביא לנו את התורה -->
-    <h1>משה רבנו</h1><p>משה רבנו הוא מהדמויות המרכזיות והחשובות ביותר בתנ"ך וביהדות, ונחשב למנהיג, נביא, ומחוקק:</p>
-    <ul><li><strong>מוצא:</strong> נולד במצרים בתקופה שבני ישראל היו משועבדים לפרעה...</li>
-      <li><strong>יציאה ממצרים:</strong>  הפך למנהיג שהוציא את בני ישראל מעבדות מצרים...</li>
-      <li><strong>מתן תורה:</strong> עלה להר סיני, שם קיבל את לוחות הברית ואת התורה כולה...</li>
-      <li><strong>הנהגה במדבר:</strong> הוא הוביל את בני ישראל במשך 40 שנה במדבר...</li>
-      <li><strong>פטירה:</strong> נפטר בגיל 120 בהר נבו, מול ארץ כנען...</li>
-
-      <li><strong>היסטוריה:</strong> משה רבנו היה מנהיגם של בני ישראל ביציאתם ממצרים. הוא נולד בתקופת גזירות קשות על העברים, הושם כתינוק בתיבה בנילוס ונמצא על ידי בת פרעה. משה גדל כנסיך מצרי, אך לאחר שראה עוול שנעשה לעמו, נמלט למדבר מדין.
-שם נגלה אליו ה' בסנה הבוער, וציווה עליו לחזור למצרים ולגאול את בנ ישראל. משה הוביל את העם ממצרים לאחר עשר המכות, חצה את ים סוף, וקיבל את התורה בהר סיני. הוא הנהיג את העם במדבר ארבעים שנה, אך לא נכנס לארץ כנען – ומת סמוך לגבול, בהר נבו.נבו, מול ארץ כנען...</li>
-    </ul>
-</section>
-
-<section>
   <!--ריסורסים קונסול הורדה -->
     <h1>הורדה יזומה של ריסורסים מהCONSOLE</h1>
     <p>Commands for using the resource recording plugin:</p>
@@ -125,9 +111,6 @@
       <li><strong>Filter:</strong> status-code:404</li>
     </ul>
 </section>
-
-
-
 <section>
     <h1>ביטול DEBUGGER דיבאג</h1>
     <p>Commands to cancel debuggers:</p>
@@ -159,6 +142,16 @@ _cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)
   </ul>
   <p>For more details: <a href="https://support.glassbox.com/s/article/6015931381393" target="_blank">Glassbox support</a></p>
 </section>
+<section>
+    <h1>Glassbox JS תבנית קריאה להקלטה</h1>
+    <p>Example call template for Glassbox:</p>
+    <ul>
+      <li><strong>Example:</strong> script type="text/javascript" id="_cls_detector" src="{Detector - Path}" async="true" data-clsconfig="reportURI=https://report.{clientname}.gbqofs.io/{CUID}/reporting/{UUID}/cls_report;></script"</li>
+    </ul>
+</section>
+
+
+
 <section>
     <h1>Glassbox JS תבנית קריאה להקלטה</h1>
     <p>Example call template for Glassbox:</p>
@@ -243,13 +236,12 @@ _cls_config.interceptAjax=true;
       <!-- מסמך הטמעה גנרי קובץ -->
       <strong>
         <h1> הורדת מסמך הנחיות גנרי </h1>
-        <a href="../data/Template.docx" download>הורד את הקובץ</a>
+        <a href="data/Template.docx" download>הורד את הקובץ</a>
          </strong>
       </section>
 
 <section>
   <!-- כתובת IPה -->
-
  <html lang="he">
 <head>
     <meta charset="UTF-8">
