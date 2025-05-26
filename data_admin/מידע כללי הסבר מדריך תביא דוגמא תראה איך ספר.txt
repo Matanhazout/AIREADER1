@@ -146,24 +146,14 @@
   <h1>מיסוך שדות API</h1><!--  מיסוך mask מיסוכים AJAX -->
   <ul>
     <p>Detailed guide on how to mask AJAX request and response bodies:</p>
-    <li><strong>Mask Response Body:</strong><br> 
-    <pre><code>
-_cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
+    <li><strong>Mask Response Body:</strong><br><pre><code>_cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
 </pre></code>
-<li><strong>Mask Request Body:</strong><br>
-  <pre><code>
-     _cls_config.ajaxMaskRequestBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
+<li><strong>Mask Request Body:</strong><br><pre><code>_cls_config.ajaxMaskRequestBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
     </pre></code>
   </ul>
   <p>For more details: <a href="https://support.glassbox.com/s/article/6015931381393" target="_blank">Glassbox support</a></p>
 </section>
-<section>
-    <h1>Glassbox JS תבנית קריאה להקלטה</h1>
-    <p>Example call template for Glassbox:</p>
-    <ul>
-      <li><strong>Example:</strong> script type="text/javascript" id="_cls_detector" src="{Detector - Path}" async="true" data-clsconfig="reportURI=https://report.{clientname}.gbqofs.io/{CUID}/reporting/{UUID}/cls_report;></script"</li>
-    </ul>
-</section>
+
 
 
 
@@ -171,7 +161,9 @@ _cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)
     <h1>Glassbox JS תבנית קריאה להקלטה</h1>
     <p>Example call template for Glassbox:</p>
     <ul>
+	  <pre><code>
       <li><strong>Example:</strong> script type="text/javascript" id="_cls_detector" src="{Detector - Path}" async="true" data-clsconfig="reportURI=https://report.{clientname}.gbqofs.io/{CUID}/reporting/{UUID}/cls_report;></script"</li>
+	  </code></pre> 
     </ul>
 </section>
 
@@ -357,7 +349,7 @@ _cls_config.interceptAjax=true;
                               </html>
                                     </section>
 <section>
-    <h1>מייל</h1>
+    <!-- מייל  -->
     <ul>
       <strong>matan.hazout@ness-tech.co.il - מתן חזות</strong>
       <strong>harel.eden@ness-tech.co.il -  הראל עדן</strong>

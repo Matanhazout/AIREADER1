@@ -311,7 +311,7 @@ def ask():
     role = USERS[username]['role']
     data_dir = DATA_DIRS.get(role, 'data_guest')
 
-    question = request.form.get('question')
+    question = request.form.get('question', '').strip()
 
     best_match = find_best_match(question, data_dir)
 
@@ -322,7 +322,17 @@ def ask():
             'images': best_match.get('images', [])
         })
     else:
-        return jsonify({'answer': 'אין תשובה מתאימה.', 'images': []})
+        from urllib.parse import quote_plus
+        search_url = f"https://www.bing.com/search?q={quote_plus(question)}"
+
+        iframe_html = f'''
+            <p>לא נמצאה תשובה מדויקת. הנה תוצאת חיפוש מ-Bing:</p>
+            <iframe src="{search_url}" width="100%" height="600" style="border:none;">
+              הדפדפן שלך לא תומך ב-iframe.
+            </iframe>
+        '''
+
+        return jsonify({'answer': iframe_html, 'images': []})
 
 
 # ראוט להוספת משתמש חדש (רק למנהלים)
