@@ -254,15 +254,14 @@ def find_best_match(question, data_dir):
 
     if matched_sections:
         final_content = '\n\n'.join(matched_sections) if return_all or len(matched_sections) > 1 else matched_sections[0]
+        return {
+            'filename': best_filename,
+            'content': final_content,
+            'images': images
+        }
     else:
-        final_content = 'אין מידע על כך.'
-
-    return {
-        'filename': best_filename,
-        'content': final_content,
-        'images': images
-    }
-
+        # כאן השתנה: מחזירים None במקום טקסט "אין מידע על כך."
+        return None
 
 
 
