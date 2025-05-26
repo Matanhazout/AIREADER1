@@ -128,7 +128,7 @@
 </section>
 
 <section>
-  <h1>מיסוך קריאות AJAX API</h1>
+  <h1>מיסוך שדות API</h1><!--  מיסוך mask מיסוכים AJAX -->
   <ul>
     <p>Detailed guide on how to mask AJAX request and response bodies:</p>
     <li><strong>Mask Response Body:</strong><br> 
@@ -205,10 +205,9 @@ _cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)
 
 
 <section>
-  <h1>החרגה קריאות AJAX API</h1>
+  <h1>החרגה דילול API</h1><!--  החרגה החרגות דילול דילולים -->
   <ul>
   <pre><code>
-
    /* BEGIN ajax */
 _cls_config.ajaxRecordMetadata="never";
 _cls_config.ajaxRecordRequestBody="and(tld,not(uriMatches(.*socket\.io.*)),not(uriMatches(.*allmenus)))";
@@ -217,10 +216,9 @@ _cls_config.ajaxRecordResponseBody="and(tld,not(uriMatches(.*socket\.io.*)),not(
 _cls_config.ajaxRecordResponseHeaders="and(tld,not(uriMatches(.*socket\.io.*)),not(uriMatches(.*allmenus)))";
 _cls_config.ajaxRecordStats="and(tld,not(uriMatches(.*socket\.io.*)),not(uriMatches(.*allmenus)))";
 _cls_config.interceptAjax=true;
-</code></pre>
-/* END ajax */             
+/* END ajax */  
+</code></pre>           
   </ul>
-
 </section>
 
 <section>
@@ -236,7 +234,7 @@ _cls_config.interceptAjax=true;
       <!-- מסמך הטמעה גנרי קובץ -->
       <strong>
         <h1> הורדת מסמך הנחיות גנרי </h1>
-        <a href="https://github.com/Matanhazout/AIREADER1/raw/refs/heads/main/data_guest/Template.docx" download>הורד את הקובץ</a>
+        <a href="https://github.com/Matanhazout/AIREADER1/raw/refs/heads/main/data_admin/Template.docx" download>הורד את הקובץ</a>
          </strong>
       </section>
 
