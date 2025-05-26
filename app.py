@@ -203,8 +203,7 @@ def find_best_match(question, data_dir):
             'images': images
         }
 
-    sections = re.findall(r'<section.*?>(.*?)</section>', content,
-                          re.DOTALL | re.IGNORECASE)
+    sections = re.findall(r'<section.*?>(.*?)</section>', content, re.DOTALL | re.IGNORECASE)
     matched_sections = []
     question_keywords = set(keywords)
 
@@ -212,8 +211,7 @@ def find_best_match(question, data_dir):
         section_clean = preprocess_question(section)
 
         h1_match = False
-        h1_matches = re.findall(r'<h1.*?>(.*?)</h1>', section,
-                                re.DOTALL | re.IGNORECASE)
+        h1_matches = re.findall(r'<h1.*?>(.*?)</h1>', section, re.DOTALL | re.IGNORECASE)
         for h1 in h1_matches:
             h1_clean = preprocess_question(h1)
             h1_words = get_words(h1_clean)
@@ -236,7 +234,7 @@ def find_best_match(question, data_dir):
             if comment_match:
                 break
 
-        strong_lines = []
+        matched_lines = []
         lines = section.splitlines()
         for line in lines:
             strong_words = re.findall(r'<strong>(.*?)</strong>', line, re.IGNORECASE)
@@ -245,20 +243,17 @@ def find_best_match(question, data_dir):
                 s_clean = preprocess_question(s)
                 strong_words_clean.extend(get_words(s_clean))
             if any(keyword_similar_or_surrounded(keyword, word) for keyword in question_keywords for word in strong_words_clean):
-                strong_lines.append(line.strip())
+                matched_lines.append(line.strip())
 
-        if (h1_match or comment_match) and strong_lines:
-            matched_sections.extend(strong_lines)
+        if (h1_match or comment_match) and matched_lines:
+            matched_sections.extend(matched_lines)
         elif h1_match or comment_match:
             matched_sections.append(section.strip())
 
     return_all = any(word in {'כל', 'הכל', 'כולם'} for word in question_clean.split())
 
     if matched_sections:
-        if return_all:
-            final_content = '\n\n'.join(matched_sections)
-        else:
-            final_content = matched_sections[0]
+        final_content = '\n\n'.join(matched_sections) if return_all or len(matched_sections) > 1 else matched_sections[0]
     else:
         final_content = 'אין מידע על כך.'
 
@@ -267,6 +262,9 @@ def find_best_match(question, data_dir):
         'content': final_content,
         'images': images
     }
+
+
+
 
 
 # --- ראוטים ---
