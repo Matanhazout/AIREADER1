@@ -78,7 +78,7 @@ button:hover {
 
 /* הודעות כלליות */
 .user-msg, .bot-msg {
-    max-width: 100%;
+    max-width: 75%;
     padding: 14px 18px;
     border-radius: 18px;
     line-height: 1.6;
@@ -216,4 +216,35 @@ img.bot-image {
     direction: ltr;
     text-align: left;
     white-space: pre-wrap;
+}
+
+/* --- מדיה קווריס לרספונסיביות --- */
+@media (max-width: 600px) {
+    /* בועות תופסות יותר רוחב, פונט קטן יותר */
+    .user-msg, .bot-msg {
+        max-width: 90%;
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+
+    /* טופס בשורה נפרדת */
+    #chat-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    #question, button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* iframe מותאם למסך קטן */
+    .iframe-wrapper {
+        width: 100vw !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .iframe-full {
+        width: 100% !important;
+        height: 300px !important;
+    }
 }
