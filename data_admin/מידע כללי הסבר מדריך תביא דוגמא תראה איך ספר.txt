@@ -151,14 +151,14 @@
     <li><strong>Mask Response Body:</strong><br> 
     <pre><code>
 _cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
-    <li><strong>Mask Request Body:</strong><br> _cls_config.ajaxMaskRequestBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
-    </code></pre>
+</pre></code>
+<li><strong>Mask Request Body:</strong><br>
+  <pre><code>
+     _cls_config.ajaxMaskRequestBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
+    </pre></code>
   </ul>
   <p>For more details: <a href="https://support.glassbox.com/s/article/6015931381393" target="_blank">Glassbox support</a></p>
 </section>
-
-
-
 <section>
     <h1>Glassbox JS תבנית קריאה להקלטה</h1>
     <p>Example call template for Glassbox:</p>

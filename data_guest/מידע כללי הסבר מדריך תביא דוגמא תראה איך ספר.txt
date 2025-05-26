@@ -111,9 +111,6 @@
       <li><strong>Filter:</strong> status-code:404</li>
     </ul>
 </section>
-
-
-
 <section>
     <h1>ביטול DEBUGGER דיבאג</h1>
     <p>Commands to cancel debuggers:</p>
@@ -137,10 +134,20 @@
     <li><strong>Mask Response Body:</strong><br> 
     <pre><code>
 _cls_config.ajaxMaskResponseBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
-    <li><strong>Mask Request Body:</strong><br> _cls_config.ajaxMaskRequestBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
-    </code></pre>
+</pre></code>
+<li><strong>Mask Request Body:</strong><br>
+  <pre><code>
+     _cls_config.ajaxMaskRequestBody = [{predicate: "uriMatches(\S*\/GetCustDetails)", transformations:[{type: "jsonfield",search: "idNumber",replace: "**********"},{type: "jsonfield",search: "custFirstName",replace: "**********"},{type: "jsonfield",search: "custLastName",replace: "*********"},{type: "jsonfield",search: "email",replace: "*********"}]}];</li>
+    </pre></code>
   </ul>
   <p>For more details: <a href="https://support.glassbox.com/s/article/6015931381393" target="_blank">Glassbox support</a></p>
+</section>
+<section>
+    <h1>Glassbox JS תבנית קריאה להקלטה</h1>
+    <p>Example call template for Glassbox:</p>
+    <ul>
+      <li><strong>Example:</strong> script type="text/javascript" id="_cls_detector" src="{Detector - Path}" async="true" data-clsconfig="reportURI=https://report.{clientname}.gbqofs.io/{CUID}/reporting/{UUID}/cls_report;></script"</li>
+    </ul>
 </section>
 
 
@@ -229,28 +236,24 @@ _cls_config.interceptAjax=true;
       <!-- מסמך הטמעה גנרי קובץ -->
       <strong>
         <h1> הורדת מסמך הנחיות גנרי </h1>
-        <a href="data/Glassbox - נוהל להטמעת JS  - Template - Copy.docx" download>הורד את הקובץ</a>
+        <a href="../data/Template.docx" download>הורד את הקובץ</a>
          </strong>
       </section>
 
 <section>
   <!-- כתובת IPה -->
-   <h1> כתובת הIP שלך </h1>
- <strong>IP</strong>
  <html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 </head>
 <body>
-   
-
-    <iframe src="https://ksp.co.il/ip?srsltid=AfmBOopzAPqMnLkViGvwWSoePziy1eiANSCr2F4M-R_e23aTK1Rz9r0i" 
+ <strong>IP</strong>
+<iframe src="https://ksp.co.il/ip?srsltid=AfmBOopzAPqMnLkViGvwWSoePziy1eiANSCr2F4M-R_e23aTK1Rz9r0i" 
             width="100%" 
             height="800px" 
             style="border: none;">
-    </iframe>
+</iframe>
 </body>
 </html>
       </section>
@@ -264,11 +267,7 @@ _cls_config.interceptAjax=true;
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-      </head>
-      <body>
-
-
+</head><body>
           <iframe src="https://rotter.net/scoopscache.html" 
                   width="100%" 
                   height="800px" 
