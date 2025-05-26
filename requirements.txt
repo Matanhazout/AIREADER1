@@ -1,0 +1,7 @@
+Flask
+Flask-Login
+Flask-SQLAlchemy
+python-docx
+PyPDF2
+openpyxl
+chardet

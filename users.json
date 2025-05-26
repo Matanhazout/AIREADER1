@@ -1,0 +1,30 @@
+{
+  "guest": {
+    "password": "12345",
+    "role": "guest"
+  },
+  "shay": {
+    "password": "12345",
+    "role": "guest"
+  },
+  "udi": {
+    "password": "12345",
+    "role": "guest"
+  },
+  "matan": {
+    "password": "12345",
+    "role": "guest"
+  },
+  "yehuda": {
+    "password": "12345",
+    "role": "guest"
+  },
+  "harel": {
+    "password": "12345",
+    "role": "guest"
+  },
+  "admin": {
+    "password": "12345",
+    "role": "admin"
+  }
+}

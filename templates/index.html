@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>צ'אט בינה מלאכותית</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body dir="{{ 'rtl' if 'he' in request.accept_languages else 'ltr' }}">
+  <div>
+    <p>שלום, {{ username }} | <a href="{{ url_for('logout') }}">התנתק</a></p>
+  </div>
+
+  <div class="chat-container">
+    <h1>ברוך הבא לצ'אט בינה מלאכותית</h1>
+    <div class="chat-box" id="chat-box"></div>
+    <form id="chat-form">
+      <input type="text" id="question" placeholder="שאל שאלה..." required />
+      <button type="submit">שלח</button>
+    </form>
+  </div>
+
+  <div id="image-modal" class="image-modal" onclick="closeModal()">
+    <img id="modal-img" class="modal-content" src="" alt="תמונה במסך מלא" />
+  </div>
+
+  <script>
+    const form = document.getElementById("chat-form");
+    const chatBox = document.getElementById("chat-box");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const questionInput = document.getElementById("question");
+      const question = questionInput.value;
+      chatBox.innerHTML += `<div class="user-msg">${question}</div>`;
+      questionInput.value = "";
+
+      const response = await fetch('/ask', {
+        method: 'POST',
+        body: new URLSearchParams({ question }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
+
+      const data = await response.json();
+      let answer = data.answer;
+      const images = data.images;
+      const fromWord = data.from_word;
+
+      const isHebrew = (text) => /[\u0590-\u05FF]/.test(text);
+      const languageClass = isHebrew(answer) ? 'he' : 'en';
+      document.body.classList.toggle('en', languageClass === 'en');
+
+      // עטיפת iframe
+      answer = answer.replace(/<iframe.*?<\/iframe>/gs, (match) => {
+        return `<div class="iframe-wrapper">${match.replace(
+          /<iframe/,
+          '<iframe class="iframe-full"'
+        )}</div>`;
+      });
+
+      if (fromWord) {
+        const wrapper = document.createElement("div");
+        wrapper.className = `bot-msg ${languageClass}`;
+        wrapper.innerHTML = answer;
+        chatBox.appendChild(wrapper);
+        appendImages(images);
+        scrollToBottom();
+      } else {
+        typeHTMLContent(chatBox, answer, languageClass, () => {
+          appendImages(images);
+          scrollToBottom();
+        });
+      }
+    });
+
+    function typeHTMLContent(container, htmlString, className = '', callback = null) {
+      const wrapper = document.createElement("div");
+      wrapper.className = `bot-msg ${className}`;
+      container.appendChild(wrapper);
+      const temp = document.createElement("div");
+      temp.innerHTML = htmlString;
+      typeNodeList(wrapper, Array.from(temp.childNodes), callback);
+    }
+
+    function typeNodeList(parent, nodes, onDone) {
+      let i = 0;
+      function next() {
+        if (i >= nodes.length) return onDone?.();
+        const node = nodes[i++];
+        typeNode(node, parent, next);
+      }
+      next();
+    }
+
+    function typeNode(node, parent, onDone) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const span = document.createElement("span");
+        parent.appendChild(span);
+        let i = 0;
+        const text = node.textContent;
+        const speed = 20;
+        function typeChar() {
+          if (i < text.length) {
+            span.textContent += text.charAt(i++);
+            scrollToBottom();
+            setTimeout(typeChar, speed);
+          } else onDone?.();
+        }
+        typeChar();
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node.cloneNode(false);
+        parent.appendChild(el);
+        typeNodeList(el, Array.from(node.childNodes), onDone);
+      } else {
+        onDone?.();
+      }
+    }
+
+    function scrollToBottom() {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function appendImages(images) {
+      if (images?.length) {
+        images.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "תמונה מקובץ Word";
+          img.className = "bot-image";
+          img.onload = scrollToBottom;
+          chatBox.appendChild(img);
+        });
+      }
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("bot-image")) {
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-img");
+        modalImg.src = e.target.src;
+        modal.classList.add("show");
+      }
+    });
+
+    function closeModal() {
+      document.getElementById("image-modal").classList.remove("show");
+    }
+  </script>
+</body>
+</html>
