@@ -2,10 +2,14 @@ def generate_ajax_config(urls):
     """
     מקבל רשימת URL-ים ומחזיר קונפיגורציה בפורמט הרצוי, עם תו \/ במקום /
     """
-    conditions = [
-        f'not(uriMatches(\\S*{url.replace("/", "\\/")}.*))'
-        for url in urls if url.strip()
-    ]
+    conditions = []
+    for url in urls:
+        url = url.strip()
+        if url:
+            safe_url = url.replace("/", "\\/")
+            condition = f'not(uriMatches(\\S*{safe_url}.*))'
+            conditions.append(condition)
+
     condition_str = f'and(tld,{",".join(conditions)})'
 
     config = f"""/* BEGIN ajax */
