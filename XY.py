@@ -1,9 +1,12 @@
 def generate_ajax_config(urls):
     """
-    מקבל רשימת URL-ים ומחזיר קונפיגורציה בפורמט הרצוי
+    מקבל רשימת URL-ים ומחזיר קונפיגורציה בפורמט הרצוי, עם תו \/ במקום /
     """
-    conditions = [f'not(uriMatches(\\S*{url}.*))' for url in urls if url.strip()]
-    condition_str = f'and(always,{",".join(conditions)})'
+    conditions = [
+        f'not(uriMatches(\\S*{url.replace("/", "\\/")}.*))'
+        for url in urls if url.strip()
+    ]
+    condition_str = f'and(tld,{",".join(conditions)})'
 
     config = f"""/* BEGIN ajax */
 _cls_config.ajaxRecordMetadata="{condition_str}";
@@ -18,16 +21,3 @@ _cls_config.ajaxResponseBodyMaxLength=24000;
 /* END ajax */"""
 
     return config
-
-
-if __name__ == "__main__":
-    print("הכנס URL-ים (שורה לכל URL). סיים עם שורת רווח ריקה:")
-    urls = []
-    while True:
-        line = input()
-        if line.strip() == "":
-            break
-        urls.append(line.strip())
-
-    print("\nהתוצאה:\n")
-    print(generate_ajax_config(urls))
