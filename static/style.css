@@ -202,8 +202,8 @@ img.bot-image {
 
 /* עיצוב ה-iframe עצמו */
 .iframe-full {
-  width: 40vw !important;  /* רוחב מלא של חלון הדפדפן */
-  height: 500px !important; /* אפשר לשנות לפי צורך */
+  width: 35vw !important;  /* רוחב מלא של חלון הדפדפן */
+  height: 550px !important; /* אפשר לשנות לפי צורך */
   border: none;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

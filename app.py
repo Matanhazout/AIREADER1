@@ -10,6 +10,7 @@ import docx
 import openpyxl
 import chardet
 from difflib import SequenceMatcher
+from XY import generate_ajax_config
 
 app = Flask(__name__)
 
@@ -312,6 +313,23 @@ def ask():
 
     question = request.form.get('question', '').strip()
 
+    # בדיקה אם המשתמש רוצה להפעיל את הפונקציה generate_ajax_config
+    if question.startswith('XCONF'):
+        # חילוץ ה-URLs מהשאלה
+        parts = question.split()
+        urls = parts[1:]  # רשימת ה-URLs אחרי הפקודה
+
+        # קריאה לפונקציה מ־XY.py
+        from XY import generate_ajax_config
+
+        result = generate_ajax_config(urls)
+        return jsonify({
+            'answer': f"<pre>{result}</pre>",
+            'filename': None,
+            'images': []
+        })
+
+    # התנהגות רגילה - חיפוש במידע
     best_match = find_best_match(question, data_dir)
 
     if best_match:
